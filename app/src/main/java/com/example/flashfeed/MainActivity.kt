@@ -1,4 +1,4 @@
-    package com.example.flashfeed
+package com.example.flashfeed
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
