@@ -1,6 +1,8 @@
 package com.example.flashfeed
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -26,19 +28,33 @@ class MainActivity : AppCompatActivity() {
             insets
         }
         val category =intent.getStringExtra("category")
-        loadNews(category!!)
+
+        val prefs = getSharedPreferences("AppSettingsPrefs", Context.MODE_PRIVATE)
+        val country = prefs.getString("preferred_country", "no data")
+        Log.d("trace",country!!)
+        val apiCountry:String
+        when(country){
+            "United States"->apiCountry="us"
+            "United Kingdom"->apiCountry="GB"
+            "Egypt"->apiCountry="EG"
+            else->{
+                apiCountry="eg"
+            }
+
+        }
+        loadNews(category!!,apiCountry)
         b.fabUp.setOnClickListener {
             b.newsList.smoothScrollToPosition(0)
         }
         b.swipeRefresh.setOnRefreshListener {
-            loadNews(category)
+            loadNews(category,apiCountry)
 
         }
 
 
 
     }
-    private fun loadNews(category:String){
+    private fun loadNews(category:String,country: String){
         val retrofit = Retrofit.Builder()
             .baseUrl("https://newsapi.org/")
             .addConverterFactory(GsonConverterFactory.create())
@@ -46,7 +62,7 @@ class MainActivity : AppCompatActivity() {
 
 
         val c =retrofit.create(NewsCallable::class.java)
-        c.getNews(category = category).enqueue(object : Callback<News> {
+        c.getNews(category = category, country = country).enqueue(object : Callback<News> {
             override fun onResponse(call: Call<News>, response: Response<News>) {
                 val news=response.body()
                 val articles =news?.articles!!

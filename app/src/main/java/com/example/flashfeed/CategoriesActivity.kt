@@ -3,12 +3,14 @@ package com.example.flashfeed
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.flashfeed.databinding.ActivityCategoriesBinding
 import com.example.flashfeed.databinding.ActivityMainBinding
+import com.example.flashfeed.databinding.ActivitySettingsBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -17,10 +19,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class CategoriesActivity : AppCompatActivity() {
     private lateinit var b:ActivityCategoriesBinding
+    private lateinit var bs:ActivitySettingsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         b = ActivityCategoriesBinding.inflate(layoutInflater)
+        bs = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(b.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { view, insets ->
             val statusBarHeight = insets.getInsets(WindowInsetsCompat.Type.statusBars()).top
@@ -61,6 +65,7 @@ class CategoriesActivity : AppCompatActivity() {
 
 
 
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -70,6 +75,15 @@ class CategoriesActivity : AppCompatActivity() {
 
 
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId==R.id.settings)
+        {
+            val i =Intent(this,SettingsActivity::class.java)
+            startActivity(i)
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
 

@@ -4,10 +4,11 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
+
 interface NewsCallable {
     @GET("v2/top-headlines")
     fun getNews(
-        @Query("country") country: String = "us",
+        @Query("country") country: String ,
         @Query("category") category: String,
         @Query("pageSize") pageSize: Int = 30,
         @Query("apiKey") apiKey: String = "059f8246f2b54780a9a24595b6dad579"
