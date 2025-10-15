@@ -7,6 +7,11 @@ android {
     namespace = "com.example.flashfeed"
     compileSdk = 36
 
+    buildFeatures {
+        viewBinding = true
+    }
+
+
     defaultConfig {
         applicationId = "com.example.flashfeed"
         minSdk = 29
