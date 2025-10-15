@@ -67,6 +67,8 @@ class CategoriesActivity : AppCompatActivity() {
 
         val inflater =menuInflater
         inflater.inflate(R.menu.menu,menu)
+
+
         return true
     }
 }
