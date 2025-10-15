@@ -2,4 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="login_background">#FDFDFD</color> <color name="top_curve_color">#F0D9CC</color>  <color name="bottom_curve_color">#B2D8D8</color> <color name="text_dark_gray">#333333</color> <color name="text_light_gray">#888888</color> <color name="edit_text_border">#D1D1D1</color>
+
 </resources>
