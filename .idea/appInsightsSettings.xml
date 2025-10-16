@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.example.flashfeed" />
+                  <option name="mobileSdkAppId" value="1:444812496229:android:3dbeeae02579e60439a58c" />
+                  <option name="projectId" value="flashfeed-649cd" />
+                  <option name="projectNumber" value="444812496229" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
