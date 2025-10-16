@@ -11,17 +11,16 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import com.example.flashfeed.databinding.ActivitySignUpBinding
 import com.google.firebase.Firebase
+import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 
 class SignUp : AppCompatActivity() {
-
     private lateinit var auth: FirebaseAuth
     private lateinit var binding: ActivitySignUpBinding
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FirebaseApp.initializeApp(this)
         enableEdgeToEdge()
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -32,7 +31,6 @@ class SignUp : AppCompatActivity() {
         }
         auth = Firebase.auth
         setupAnimations()
-
         binding.oldUser.setOnClickListener {
             startActivity(Intent(this, Login::class.java))
             finish()
