@@ -53,6 +53,8 @@ class Login : AppCompatActivity() {
             else {
                 binding.ProgressBar.isVisible = true
                 signIn(email, password)
+                val i=Intent(this,CategoriesActivity::class.java)
+                startActivity(i)
             }
         }
         binding.forgetPassword.setOnClickListener {
@@ -103,7 +105,7 @@ class Login : AppCompatActivity() {
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
         if (currentUser != null && currentUser.isEmailVerified) {
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, CategoriesActivity::class.java))
             finish()
         }
     }
@@ -129,13 +131,7 @@ class Login : AppCompatActivity() {
         binding.newUser.startAnimation(animSlideInBottom)
     }
 
-    /*
-    sign out
 
-     Firebase.auth.signOut()
-    startActivity(Intent(this, Login::class.java))
-    finish()
-    */
 
 
 }

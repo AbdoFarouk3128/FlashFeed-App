@@ -9,17 +9,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.flashfeed.databinding.ActivityCategoriesBinding
-import com.example.flashfeed.databinding.ActivityMainBinding
 import com.example.flashfeed.databinding.ActivitySettingsBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 
 class CategoriesActivity : AppCompatActivity() {
-    private lateinit var b:ActivityCategoriesBinding
-    private lateinit var bs:ActivitySettingsBinding
+    private lateinit var b: ActivityCategoriesBinding
+    private lateinit var bs: ActivitySettingsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -38,50 +34,66 @@ class CategoriesActivity : AppCompatActivity() {
         }
         setTitle("Categories")
         b.general.setOnClickListener {
-            val i =Intent(this,MainActivity::class.java)
-            i.putExtra("category","general")
+            val i = Intent(this, MainActivity::class.java)
+            i.putExtra("category", "general")
             startActivity(i)
         }
-        b.health.setOnClickListener { val i =Intent(this,MainActivity::class.java)
-            i.putExtra("category","health")
-            startActivity(i) }
-        b.tech.setOnClickListener { val i =Intent(this,MainActivity::class.java)
-            i.putExtra("category","technology")
-            startActivity(i) }
-        b.entertainment.setOnClickListener { val i =Intent(this,MainActivity::class.java)
-            i.putExtra("category","entertainment")
-            startActivity(i) }
-        b.science.setOnClickListener {val i =Intent(this,MainActivity::class.java)
-            i.putExtra("category","science")
-            startActivity(i)  }
-        b.sport.setOnClickListener { val i =Intent(this,MainActivity::class.java)
-            i.putExtra("category","sports")
-            startActivity(i) }
-        b.Business.setOnClickListener { val i =Intent(this,MainActivity::class.java)
-            i.putExtra("category","business")
-            startActivity(i) }
-
-
-
-
+        b.health.setOnClickListener {
+            val i = Intent(this, MainActivity::class.java)
+            i.putExtra("category", "health")
+            startActivity(i)
+        }
+        b.tech.setOnClickListener {
+            val i = Intent(this, MainActivity::class.java)
+            i.putExtra("category", "technology")
+            startActivity(i)
+        }
+        b.entertainment.setOnClickListener {
+            val i = Intent(this, MainActivity::class.java)
+            i.putExtra("category", "entertainment")
+            startActivity(i)
+        }
+        b.science.setOnClickListener {
+            val i = Intent(this, MainActivity::class.java)
+            i.putExtra("category", "science")
+            startActivity(i)
+        }
+        b.sport.setOnClickListener {
+            val i = Intent(this, MainActivity::class.java)
+            i.putExtra("category", "sports")
+            startActivity(i)
+        }
+        b.Business.setOnClickListener {
+            val i = Intent(this, MainActivity::class.java)
+            i.putExtra("category", "business")
+            startActivity(i)
+        }
 
 
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
-        val inflater =menuInflater
-        inflater.inflate(R.menu.menu,menu)
+        val inflater = menuInflater
+        inflater.inflate(R.menu.menu, menu)
 
 
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId==R.id.settings)
-        {
-            val i =Intent(this,SettingsActivity::class.java)
+        if (item.itemId == R.id.settings) {
+            val i = Intent(this, SettingsActivity::class.java)
             startActivity(i)
+        } else if (item.itemId == R.id.log_out) {
+
+            //sign out(kero)
+
+            Firebase.auth.signOut()
+            val i = Intent(this, Login::class.java)
+            startActivity(i)
+            finish()
+
         }
         return super.onOptionsItemSelected(item)
     }
