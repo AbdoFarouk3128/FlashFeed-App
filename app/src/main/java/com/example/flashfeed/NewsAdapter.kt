@@ -40,7 +40,20 @@ class NewsAdapter(val a: Activity, val articles: ArrayList<Article>) :
             a.startActivity(i)
 
         }
+        if (articles[position].isFavorite) {
+            holder.b.fav.setImageResource(R.drawable.star_checked)
+        } else {
+            holder.b.fav.setImageResource(R.drawable.star_unchecked)
+        }
 
+        holder.b.fav.setOnClickListener {
+            articles[position].isFavorite = !articles[position].isFavorite
+            if (articles[position].isFavorite) {
+                holder.b.fav.setImageResource(R.drawable.star_checked)
+            } else {
+                holder.b.fav.setImageResource(R.drawable.star_unchecked)
+            }
+        }
         holder.b.shareFab.setOnClickListener {
             ShareCompat.IntentBuilder(a)
                 .setType("text/plain")

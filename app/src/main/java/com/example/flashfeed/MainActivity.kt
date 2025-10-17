@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.flashfeed.databinding.ActivityMainBinding
+import com.example.flashfeed.databinding.ArticleListItemBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -17,10 +18,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 class MainActivity : AppCompatActivity() {
 
     private lateinit var b:ActivityMainBinding
+    private lateinit var b1:ArticleListItemBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         b=ActivityMainBinding.inflate(layoutInflater)
+        b1=ArticleListItemBinding.inflate(layoutInflater)
         setContentView(b.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -48,6 +51,10 @@ class MainActivity : AppCompatActivity() {
         }
         b.swipeRefresh.setOnRefreshListener {
             loadNews(category,apiCountry)
+
+        }
+
+        b1.fav.setOnClickListener {
 
         }
 

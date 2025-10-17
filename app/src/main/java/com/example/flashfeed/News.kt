@@ -4,7 +4,8 @@ import com.google.gson.annotations.SerializedName
 
 
 data class News(
-    val articles:ArrayList<Article>
+    val articles:ArrayList<Article>,
+
 )
 
 
@@ -13,6 +14,7 @@ data class Article(
     @SerializedName("url")
     val link:String,
     @SerializedName("urlToImage")
-    val image:String
+    val image:String,
+    var isFavorite:Boolean=false
 
 )
