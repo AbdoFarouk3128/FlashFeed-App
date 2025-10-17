@@ -6,15 +6,21 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.WindowManager
+import android.view.animation.AccelerateInterpolator
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
+import android.view.animation.AnimationSet
+import android.view.animation.AnimationUtils
+import android.view.animation.DecelerateInterpolator
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.flashfeed.databinding.ActivityCategoriesBinding
 import com.example.flashfeed.databinding.ActivitySettingsBinding
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
+
 
 class CategoriesActivity : AppCompatActivity() {
     private lateinit var b: ActivityCategoriesBinding
@@ -40,6 +46,8 @@ class CategoriesActivity : AppCompatActivity() {
             )
             insets
         }
+        setupAnimations()
+
         setTitle("Categories")
 
         b.general.setOnClickListener {
@@ -105,6 +113,33 @@ class CategoriesActivity : AppCompatActivity() {
 
         }
         return super.onOptionsItemSelected(item)
+    }
+    private fun setupAnimations() {
+        val animSlideInRight =
+            AnimationUtils.loadAnimation(this, R.anim.slide_in_right)
+        val animSlideInLeft =
+            AnimationUtils.loadAnimation(this, R.anim.slide_in_left)
+        val animSlideInTop =
+            AnimationUtils.loadAnimation(this, R.anim.slide_in_top)
+      val fadeIn=
+          AnimationUtils.loadAnimation(this,R.anim.fade_in)
+
+        b.general.startAnimation(animSlideInTop)
+        b.Business.startAnimation(animSlideInLeft)
+        b.entertainment.startAnimation(animSlideInRight)
+        b.health.startAnimation(animSlideInLeft)
+        b.sport.startAnimation(animSlideInLeft)
+        b.science.startAnimation(animSlideInRight)
+        b.tech.startAnimation(animSlideInRight)
+
+
+        b.generalTv.startAnimation(fadeIn)
+        b.techTv.startAnimation(fadeIn)
+        b.businessTv.startAnimation(fadeIn)
+        b.sportTv.startAnimation(fadeIn)
+        b.entertainmentTv.startAnimation(fadeIn)
+        b.scienceTv.startAnimation(fadeIn)
+        b.healthTv.startAnimation(fadeIn)
     }
 }
 

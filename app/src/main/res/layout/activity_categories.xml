@@ -24,6 +24,7 @@
         app:shapeAppearance="@style/RoundedImageView" />
 
     <TextView
+        android:id="@+id/general_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="serif"
@@ -52,17 +53,10 @@
         app:shapeAppearance="@style/RoundedImageView"
         app:tint="#80000000" />
 
-    <!--    <View-->
-    <!--        android:layout_width="0dp"-->
-    <!--        android:layout_height="0dp"-->
-    <!--        android:alpha="0.5"-->
-    <!--        android:background="@color/black"-->
-    <!--        app:layout_constraintBottom_toBottomOf="@id/Business"-->
-    <!--        app:layout_constraintEnd_toEndOf="@id/Business"-->
-    <!--        app:layout_constraintStart_toStartOf="@id/Business"-->
-    <!--        app:layout_constraintTop_toTopOf="@id/Business" />-->
+
 
     <TextView
+        android:id="@+id/business_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="serif"
@@ -90,17 +84,8 @@
         app:layout_constraintTop_toBottomOf="@+id/general"
         app:shapeAppearance="@style/RoundedImageView" />
 
-    <!--    <View-->
-    <!--        android:layout_width="0dp"-->
-    <!--        android:layout_height="0dp"-->
-    <!--        android:alpha="0.5"-->
-    <!--        android:background="@color/black"-->
-    <!--        app:layout_constraintBottom_toBottomOf="@id/entertainment"-->
-    <!--        app:layout_constraintEnd_toEndOf="@id/entertainment"-->
-    <!--        app:layout_constraintStart_toStartOf="@id/entertainment"-->
-    <!--        app:layout_constraintTop_toTopOf="@id/entertainment" />-->
-
     <TextView
+        android:id="@+id/entertainment_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="serif"
@@ -129,17 +114,10 @@
         app:layout_constraintTop_toBottomOf="@+id/Business"
         app:shapeAppearance="@style/RoundedImageView" />
 
-    <!--    <View-->
-    <!--        android:layout_width="0dp"-->
-    <!--        android:layout_height="0dp"-->
-    <!--        android:alpha="0.5"-->
-    <!--        android:background="@color/black"-->
-    <!--        app:layout_constraintBottom_toBottomOf="@id/health"-->
-    <!--        app:layout_constraintEnd_toEndOf="@id/health"-->
-    <!--        app:layout_constraintStart_toStartOf="@id/health"-->
-    <!--        app:layout_constraintTop_toTopOf="@id/health" />-->
+
 
     <TextView
+        android:id="@+id/health_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="serif"
@@ -167,17 +145,9 @@
         app:layout_constraintTop_toBottomOf="@+id/entertainment"
         app:shapeAppearance="@style/RoundedImageView" />
 
-    <!--    <View-->
-    <!--        android:layout_width="0dp"-->
-    <!--        android:layout_height="0dp"-->
-    <!--        android:alpha="0.5"-->
-    <!--        android:background="@color/black"-->
-    <!--        app:layout_constraintBottom_toBottomOf="@id/science"-->
-    <!--        app:layout_constraintEnd_toEndOf="@id/science"-->
-    <!--        app:layout_constraintStart_toStartOf="@id/science"-->
-    <!--        app:layout_constraintTop_toTopOf="@id/science" />-->
 
     <TextView
+        android:id="@+id/science_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="serif"
@@ -206,17 +176,9 @@
         app:layout_constraintTop_toBottomOf="@+id/health"
         app:shapeAppearance="@style/RoundedImageView" />
 
-    <!--    <View-->
-    <!--        android:layout_width="0dp"-->
-    <!--        android:layout_height="0dp"-->
-    <!--        android:alpha="0.5"-->
-    <!--        android:background="@color/black"-->
-    <!--        app:layout_constraintBottom_toBottomOf="@id/sport"-->
-    <!--        app:layout_constraintEnd_toEndOf="@id/sport"-->
-    <!--        app:layout_constraintStart_toStartOf="@id/sport"-->
-    <!--        app:layout_constraintTop_toTopOf="@id/sport" />-->
 
     <TextView
+        android:id="@+id/sport_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="serif"
@@ -244,17 +206,10 @@
         app:layout_constraintTop_toBottomOf="@+id/science"
         app:shapeAppearance="@style/RoundedImageView" />
 
-    <!--    <View-->
-    <!--        android:layout_width="0dp"-->
-    <!--        android:layout_height="0dp"-->
-    <!--        android:alpha="0.5"-->
-    <!--        android:background="@color/black"-->
-    <!--        app:layout_constraintBottom_toBottomOf="@id/tech"-->
-    <!--        app:layout_constraintEnd_toEndOf="@id/tech"-->
-    <!--        app:layout_constraintStart_toStartOf="@id/tech"-->
-    <!--        app:layout_constraintTop_toTopOf="@id/tech" />-->
+
 
     <TextView
+        android:id="@+id/tech_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="serif"
