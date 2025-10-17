@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val category = intent.getStringExtra("category")
+        val category = intent.getStringExtra("category") ?: "general"
 
         val prefs = getSharedPreferences("AppSettingsPrefs", Context.MODE_PRIVATE)
         val country = prefs.getString("preferred_country", "no data")
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        loadNews(category!!, apiCountry)
+        loadNews(category, apiCountry)
 
 
         b.fabUp.setOnClickListener {

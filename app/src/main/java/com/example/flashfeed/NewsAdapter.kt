@@ -17,6 +17,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.flashfeed.databinding.ArticleListItemBinding
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
+import com.google.firebase.auth.FirebaseAuth // Added import for FirebaseAuth
 
 class NewsAdapter(val a: Activity, val articles: ArrayList<Article>) :
     RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
@@ -33,17 +34,24 @@ class NewsAdapter(val a: Activity, val articles: ArrayList<Article>) :
 
     override fun onBindViewHolder(holder: NewsAdapter.NewsViewHolder, position: Int) {
         holder.b.articleText.text = articles[position].title
-        Firebase.firestore.collection("Favorites")
-            .get()
-            .addOnSuccessListener { result ->
-                for (doc in result) {
-                    val fav = doc.toObject(Favorites::class.java)
-                    if (fav.title == articles[position].title) {
-                        holder.b.fav.setImageResource(R.drawable.star_checked)
-                        articles[position].isFavorite = true
+        
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        if (userId == null) {
+            Log.w("NewsAdapter", "User not logged in, cannot load favorites.")
+            // Optionally, disable favorite button or show a message
+        } else {
+            Firebase.firestore.collection("Users").document(userId).collection("Favorites")
+                .get()
+                .addOnSuccessListener { result ->
+                    for (doc in result) {
+                        val fav = doc.toObject(Favorites::class.java)
+                        if (fav.title == articles[position].title) {
+                            holder.b.fav.setImageResource(R.drawable.star_checked)
+                            articles[position].isFavorite = true
+                        }
                     }
                 }
-            }
+        }
 
 
         Glide.with(holder.b.articleImage.context)
@@ -74,25 +82,45 @@ class NewsAdapter(val a: Activity, val articles: ArrayList<Article>) :
                 val link = articles[position].link
                 val fav = Favorites(title = title, link = link)
                 Log.d("trace", "Trying to add fav")
-                Firebase.firestore.collection("Favorites").add(fav)
-                    .addOnSuccessListener {
-                        it.update("id", it.id)
-                            .addOnSuccessListener {
-                                Toast.makeText(a, "Added To Favorites", Toast.LENGTH_SHORT).show()
-                            }
-                    }
+                
+                val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
+                if (currentUserId == null) {
+                    Log.w("NewsAdapter", "User not logged in, cannot add to favorites.")
+                    Toast.makeText(a, "Please log in to add favorites", Toast.LENGTH_SHORT).show()
+                    // Revert the favorite state in UI if not logged in
+                    articles[position].isFavorite = false
+                    holder.b.fav.setImageResource(R.drawable.star_unchecked)
+                } else {
+                    Firebase.firestore.collection("Users").document(currentUserId).collection("Favorites").add(fav)
+                        .addOnSuccessListener {
+                            it.update("id", it.id)
+                                .addOnSuccessListener {
+                                    Toast.makeText(a, "Added To Favorites", Toast.LENGTH_SHORT).show()
+                                }
+                        }
+                }
 
             } else if (!articles[position].isFavorite) {
                 holder.b.fav.setImageResource(R.drawable.star_unchecked)
-                Firebase.firestore.collection("Favorites")
-                    .whereEqualTo("link", articles[position].link)
-                    .get()
-                    .addOnSuccessListener { result ->
-                        for (doc in result) {
-                            Firebase.firestore.collection("Favorites").document(doc.id).delete()
+                
+                val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
+                if (currentUserId == null) {
+                    Log.w("NewsAdapter", "User not logged in, cannot remove from favorites.")
+                    Toast.makeText(a, "Please log in to remove favorites", Toast.LENGTH_SHORT).show()
+                    // Revert the favorite state in UI if not logged in
+                    articles[position].isFavorite = true
+                    holder.b.fav.setImageResource(R.drawable.star_checked)
+                } else {
+                    Firebase.firestore.collection("Users").document(currentUserId).collection("Favorites")
+                        .whereEqualTo("link", articles[position].link)
+                        .get()
+                        .addOnSuccessListener { result ->
+                            for (doc in result) {
+                                Firebase.firestore.collection("Users").document(currentUserId).collection("Favorites").document(doc.id).delete()
+                            }
+                            Toast.makeText(a, "Removed From Favorites", Toast.LENGTH_SHORT).show()
                         }
-                        Toast.makeText(a, "Removed From Favorites", Toast.LENGTH_SHORT).show()
-                    }
+                }
             }
         }
 

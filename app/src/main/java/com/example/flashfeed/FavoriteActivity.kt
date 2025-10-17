@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.flashfeed.databinding.ActivityFavoriteBinding
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
+import com.google.firebase.auth.FirebaseAuth // Added import for FirebaseAuth
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -75,18 +76,25 @@ class FavoriteActivity : AppCompatActivity() {
     }
 
     private fun showDeleteDialog(position: Int, favList: ArrayList<Favorites>) {
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        if (userId == null) {
+            Toast.makeText(this, "Please log in to remove favorites", Toast.LENGTH_SHORT).show()
+            b.favoriteList.adapter?.notifyItemChanged(position) // Revert UI
+            return
+        }
+
         val builder = AlertDialog.Builder(this)
 
         builder.setTitle("remove Favorite")
             .setMessage("You will delete this NEWS")
             .setPositiveButton("Yes")
             { _, _ ->
-                Firebase.firestore.collection("Favorites")
+                Firebase.firestore.collection("Users").document(userId).collection("Favorites")
                     .whereEqualTo("link", favList[position].link)
                     .get()
                     .addOnSuccessListener { result ->
                         for (doc in result) {
-                            Firebase.firestore.collection("Favorites").document(doc.id).delete()
+                            Firebase.firestore.collection("Users").document(userId).collection("Favorites").document(doc.id).delete()
                         }
                         Toast.makeText(this, "Removed From Favorites", Toast.LENGTH_SHORT).show()
                     }
@@ -107,33 +115,46 @@ class FavoriteActivity : AppCompatActivity() {
 
     private fun getFavorites() {
         favList.clear()
-        Firebase.firestore.collection("Favorites")
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+
+        if (userId == null) {
+            Log.w("FavoriteActivity", "User not logged in, cannot load favorites.")
+            b.layoutNoFavorites.root.visibility = View.VISIBLE
+            b.progress.visibility = View.INVISIBLE
+            return
+        }
+
+        Firebase.firestore.collection("Users").document(userId).collection("Favorites")
             .get()
             .addOnSuccessListener { result ->
                 favList.clear()
                 for (doc in result) {
                     val fav = doc.toObject(Favorites::class.java)
                     favList.add(fav)
-                    b.progress.visibility = View.INVISIBLE
-                    showFavorites()
                 }
+                b.progress.visibility = View.INVISIBLE
+                showFavorites()
 
                 if (favList.isEmpty()) {
                     b.layoutNoFavorites.root.visibility = View.VISIBLE
-                    b.progress.visibility = View.INVISIBLE
+                } else {
+                    b.layoutNoFavorites.root.visibility = View.GONE
                 }
             }
             .addOnFailureListener {
-                Toast.makeText(this, "Failed to delete", Toast.LENGTH_SHORT).show()
+                Log.e("FavoriteActivity", "Error loading favorites", it)
+                Toast.makeText(this, "Failed to load favorites", Toast.LENGTH_SHORT).show()
+                b.progress.visibility = View.INVISIBLE
+                b.layoutNoFavorites.root.visibility = View.VISIBLE
             }
-
-
     }
 
     private fun showFavorites() {
         if (favList.isEmpty()) {
             b.progress.visibility = View.INVISIBLE
+            b.layoutNoFavorites.root.visibility = View.VISIBLE
         } else {
+            b.layoutNoFavorites.root.visibility = View.GONE
             val adapter = FavoritesAdapter(this, favList)
             b.favoriteList.adapter = adapter
             swipeToDelete(favList)
