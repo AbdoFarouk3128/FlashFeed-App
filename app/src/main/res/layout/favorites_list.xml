@@ -17,7 +17,7 @@
             app:layout_constraintTop_toTopOf="parent"
             android:maxLength="18"
             android:id="@+id/title_tv"
-            android:textSize="24dp"
+            android:textSize="24sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Title"/>
@@ -25,7 +25,7 @@
             app:layout_constraintStart_toEndOf="@id/title_tv"
             app:layout_constraintTop_toTopOf="parent"
             android:maxLength="28"
-            android:textSize="24dp"
+            android:textSize="24sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="..." />
@@ -44,7 +44,7 @@
             app:layout_constraintTop_toTopOf="@id/link_tv"
             app:layout_constraintBottom_toBottomOf="@id/link_tv"
             android:maxLength="28"
-            android:textSize="24dp"
+            android:textSize="24sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="..." />
