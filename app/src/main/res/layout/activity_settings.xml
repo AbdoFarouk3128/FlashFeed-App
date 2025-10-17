@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:text="Save"
         app:cornerRadius="28dp"
-        app:backgroundTint="@color/black"
+        app:backgroundTint="#D10101"
         android:textColor="@color/white" />
 
 

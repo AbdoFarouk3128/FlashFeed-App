@@ -1,6 +1,7 @@
 package com.example.flashfeed
 
 import Favorites
+import android.app.Activity
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +9,7 @@ import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.example.flashfeed.databinding.FavoritesListBinding
 
-class FavoritesAdapter(private val favList: ArrayList<Favorites>) :
+class FavoritesAdapter(val a:Activity,val favList: ArrayList<Favorites>) :
     RecyclerView.Adapter<FavoritesAdapter.FavViewHolder>() {
 
     class FavViewHolder(val b: FavoritesListBinding) : RecyclerView.ViewHolder(b.root)
@@ -27,7 +28,9 @@ class FavoritesAdapter(private val favList: ArrayList<Favorites>) :
             val i = Intent(Intent.ACTION_VIEW, favList[position].link.toUri())
             holder.itemView.context.startActivity(i)
         }
+
     }
 
     override fun getItemCount() = favList.size
+
 }

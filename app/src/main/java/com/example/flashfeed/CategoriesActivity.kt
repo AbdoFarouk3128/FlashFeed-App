@@ -52,6 +52,8 @@ class CategoriesActivity : AppCompatActivity() {
         setupAnimations()
 
         setTitle("Categories")
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
 
         b.general.setOnClickListener {
             val i = Intent(this, MainActivity::class.java)
@@ -91,7 +93,10 @@ class CategoriesActivity : AppCompatActivity() {
 
 
     }
-
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
+    }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
         val inflater = menuInflater
@@ -117,7 +122,6 @@ class CategoriesActivity : AppCompatActivity() {
         }
         else if(item.itemId==R.id.Favorite){
             val i =Intent(this,FavoriteActivity::class.java)
-
             startActivity(i)
 
         }

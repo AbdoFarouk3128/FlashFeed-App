@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-
         val category =intent.getStringExtra("category")
 
         val prefs = getSharedPreferences("AppSettingsPrefs", Context.MODE_PRIVATE)
@@ -57,10 +56,14 @@ class MainActivity : AppCompatActivity() {
         b.swipeRefresh.setOnRefreshListener {
             loadNews(category,apiCountry)
         }
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
     }
 
-
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
+    }
     private fun loadNews(category:String,country: String){
         val retrofit = Retrofit.Builder()
             .baseUrl("https://newsapi.org/")

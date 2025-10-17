@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ShareCompat
@@ -19,6 +20,7 @@ import com.google.firebase.firestore.firestore
 
 class NewsAdapter(val a: Activity, val articles: ArrayList<Article>) :
     RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
+        lateinit var  favList:List<String>
     class NewsViewHolder(val b: ArticleListItemBinding) : ViewHolder(b.root) {
 
     }
@@ -30,6 +32,18 @@ class NewsAdapter(val a: Activity, val articles: ArrayList<Article>) :
 
     override fun onBindViewHolder(holder: NewsAdapter.NewsViewHolder, position: Int) {
         holder.b.articleText.text = articles[position].title
+        Firebase.firestore.collection("Favorites")
+            .get()
+            .addOnSuccessListener { result ->
+                for (doc in result) {
+                    val fav = doc.toObject(Favorites::class.java)
+                    if (fav.title == articles[position].title) {
+                        holder.b.fav.setImageResource(R.drawable.star_checked)
+                        articles[position].isFavorite = true
+                    }
+                }
+            }
+
 
         Glide.with(holder.b.articleImage.context)
             .load(articles[position].image)

@@ -36,6 +36,8 @@ class SettingsActivity : AppCompatActivity() {
             insets
         }
         setTitle("Settings")
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         //End of Abdelrahman Latif
         //Add the countries you want
         val countries = listOf(
@@ -61,5 +63,9 @@ class SettingsActivity : AppCompatActivity() {
             //optional
             finish()
         }
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 }

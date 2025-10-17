@@ -9,15 +9,11 @@
     android:layout_height="match_parent"
     tools:context=".FavoriteActivity">
     <include
-        android:id="@+id/layout_no_news"
+        android:id="@+id/layout_no_favorites"
         layout="@layout/no_favorites"
         android:visibility="invisible"
         />
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:layout_marginBottom="8dp"
-        android:id="@+id/swipe_refresh"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/favorite_list"
@@ -25,7 +21,7 @@
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/favorites_list" />
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
