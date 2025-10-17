@@ -18,49 +18,49 @@ import retrofit2.converter.gson.GsonConverterFactory
 class MainActivity : AppCompatActivity() {
 
     private lateinit var b:ActivityMainBinding
-    private lateinit var b1:ArticleListItemBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         b=ActivityMainBinding.inflate(layoutInflater)
-        b1=ArticleListItemBinding.inflate(layoutInflater)
         setContentView(b.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+
         val category =intent.getStringExtra("category")
 
         val prefs = getSharedPreferences("AppSettingsPrefs", Context.MODE_PRIVATE)
         val country = prefs.getString("preferred_country", "no data")
         Log.d("trace",country!!)
-        val apiCountry:String
-        when(country){
-            "United States"->apiCountry="us"
-            "United Kingdom"->apiCountry="GB"
-            "Egypt"->apiCountry="EG"
-            else->{
-                apiCountry="eg"
-            }
 
+
+        val apiCountry = when(country){
+            "United States"-> "us"
+            "United Kingdom"-> "gb"
+            "Egypt"-> "eg"
+            else->{
+                "eg"
+            }
         }
+
         loadNews(category!!,apiCountry)
+
+
         b.fabUp.setOnClickListener {
             b.newsList.smoothScrollToPosition(0)
         }
+
+
         b.swipeRefresh.setOnRefreshListener {
             loadNews(category,apiCountry)
-
         }
-
-        b1.fav.setOnClickListener {
-
-        }
-
-
 
     }
+
+
     private fun loadNews(category:String,country: String){
         val retrofit = Retrofit.Builder()
             .baseUrl("https://newsapi.org/")
@@ -96,7 +96,9 @@ class MainActivity : AppCompatActivity() {
 
         })
     }
-    private fun showNews( article:ArrayList<Article>){
+
+
+    private fun showNews(article:ArrayList<Article>){
         val adapter =NewsAdapter(this, article)
         b.newsList.adapter=adapter
 

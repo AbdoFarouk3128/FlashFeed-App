@@ -3,7 +3,6 @@ package com.example.flashfeed
 import android.app.Activity
 import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ShareCompat
 import androidx.core.net.toUri
@@ -50,6 +49,7 @@ class NewsAdapter(val a: Activity, val articles: ArrayList<Article>) :
             articles[position].isFavorite = !articles[position].isFavorite
             if (articles[position].isFavorite) {
                 holder.b.fav.setImageResource(R.drawable.star_checked)
+
             } else {
                 holder.b.fav.setImageResource(R.drawable.star_unchecked)
             }
