@@ -70,9 +70,13 @@ class NewsAdapter(val a: Activity, val articles: ArrayList<Article>) :
             } else if(!articles[position].isFavorite){
                 holder.b.fav.setImageResource(R.drawable.star_unchecked)
                 Firebase.firestore.collection("Favorites")
-                    .document(it.id.toString()).delete()
-                    .addOnSuccessListener {
-                        Toast.makeText(a, "Removed From Favorite", Toast.LENGTH_SHORT).show()
+                    .whereEqualTo("link", articles[position].link)
+                    .get()
+                    .addOnSuccessListener { result ->
+                        for (doc in result) {
+                            Firebase.firestore.collection("Favorites").document(doc.id).delete()
+                        }
+                        Toast.makeText(a, "Removed From Favorites", Toast.LENGTH_SHORT).show()
                     }
             }
         }

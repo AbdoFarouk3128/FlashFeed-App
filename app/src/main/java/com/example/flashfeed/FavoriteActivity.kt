@@ -1,12 +1,16 @@
 package com.example.flashfeed
 
+import Favorites
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.flashfeed.databinding.ActivityFavoriteBinding
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,21 +23,33 @@ class FavoriteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         b=ActivityFavoriteBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_favorite)
+        setContentView(b.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
-
+        setTitle("Favorites")
+        showFavorites()
 
     }
 
-    private fun showNews(article:ArrayList<Article>){
-        val favoriteArticles = article.filter { it.isFavorite }
-        val adapter = NewsAdapter(this, ArrayList(favoriteArticles))
-        b.newsList.adapter = adapter
+    private fun showFavorites(){
+        val favList = arrayListOf<Favorites>()
+        val adapter = FavoritesAdapter(favList)
+        b.favoriteList.adapter = adapter
+        Firebase.firestore.collection("Favorites")
+            .get()
+            .addOnSuccessListener { result ->
+                favList.clear()
+                for (doc in result) {
+                    val fav = doc.toObject(Favorites::class.java)
+                    favList.add(fav)
+                    b.progress.visibility=View.INVISIBLE
+                }
+                adapter.notifyDataSetChanged()
+            }
+
 
     }
 }

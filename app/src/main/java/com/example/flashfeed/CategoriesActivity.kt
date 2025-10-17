@@ -116,6 +116,9 @@ class CategoriesActivity : AppCompatActivity() {
 
         }
         else if(item.itemId==R.id.Favorite){
+            val i =Intent(this,FavoriteActivity::class.java)
+
+            startActivity(i)
 
         }
         return super.onOptionsItemSelected(item)
