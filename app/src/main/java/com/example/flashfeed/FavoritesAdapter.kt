@@ -24,7 +24,7 @@ class FavoritesAdapter(val a:Activity,val favList: ArrayList<Favorites>) :
     override fun onBindViewHolder(holder: FavViewHolder, position: Int) {
         holder.b.titleTv.text = favList[position].title
         holder.b.linkTv.text=favList[position].link
-        holder.b.linkTv.setOnClickListener {
+        holder.itemView.setOnClickListener {
             val i = Intent(Intent.ACTION_VIEW, favList[position].link.toUri())
             holder.itemView.context.startActivity(i)
         }

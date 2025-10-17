@@ -20,7 +20,8 @@ import com.google.firebase.firestore.firestore
 
 class NewsAdapter(val a: Activity, val articles: ArrayList<Article>) :
     RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
-        lateinit var  favList:List<String>
+    lateinit var favList: List<String>
+
     class NewsViewHolder(val b: ArticleListItemBinding) : ViewHolder(b.root) {
 
     }
@@ -81,7 +82,7 @@ class NewsAdapter(val a: Activity, val articles: ArrayList<Article>) :
                             }
                     }
 
-            } else if(!articles[position].isFavorite){
+            } else if (!articles[position].isFavorite) {
                 holder.b.fav.setImageResource(R.drawable.star_unchecked)
                 Firebase.firestore.collection("Favorites")
                     .whereEqualTo("link", articles[position].link)

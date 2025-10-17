@@ -4,20 +4,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:background="@drawable/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".MainActivity">
+
     <include
         android:id="@+id/layout_no_news"
         layout="@layout/no_news"
-        android:visibility="invisible"
-        />
+        android:visibility="invisible" />
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:layout_marginBottom="8dp"
         android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="8dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/news_list"
@@ -29,14 +30,15 @@
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:backgroundTint="@color/white"
         android:id="@+id/fab_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:src="@drawable/go_up"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:backgroundTint="@color/white"
+        android:src="@drawable/go_up" />
+
     <ProgressBar
         android:id="@+id/progress"
         android:layout_width="wrap_content"

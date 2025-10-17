@@ -4,35 +4,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:background="@drawable/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".FavoriteActivity">
+
     <include
         android:id="@+id/layout_no_favorites"
         layout="@layout/no_favorites"
-        android:visibility="invisible"
-        />
+        android:visibility="invisible" />
 
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/favorite_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/favorites_list" />
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/favorite_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/favorites_list" />
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:backgroundTint="@color/white"
         android:id="@+id/fab_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:src="@drawable/go_up"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:backgroundTint="@color/white"
+        android:src="@drawable/go_up" />
+
     <ProgressBar
         android:id="@+id/progress"
         android:layout_width="wrap_content"
