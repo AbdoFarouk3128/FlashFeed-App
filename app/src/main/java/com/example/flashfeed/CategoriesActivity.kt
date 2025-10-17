@@ -1,8 +1,10 @@
 package com.example.flashfeed
 
+import Favorites
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.WindowManager
@@ -20,6 +22,7 @@ import com.example.flashfeed.databinding.ActivityCategoriesBinding
 import com.example.flashfeed.databinding.ActivitySettingsBinding
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
+import com.google.firebase.firestore.firestore
 
 
 class CategoriesActivity : AppCompatActivity() {
@@ -112,6 +115,9 @@ class CategoriesActivity : AppCompatActivity() {
             finish()
 
         }
+        else if(item.itemId==R.id.Favorite){
+
+        }
         return super.onOptionsItemSelected(item)
     }
     private fun setupAnimations() {
@@ -121,7 +127,7 @@ class CategoriesActivity : AppCompatActivity() {
             AnimationUtils.loadAnimation(this, R.anim.slide_in_left)
         val animSlideInTop =
             AnimationUtils.loadAnimation(this, R.anim.slide_in_top)
-      val fadeIn=
+      val fadeIn =
           AnimationUtils.loadAnimation(this,R.anim.fade_in)
 
         b.general.startAnimation(animSlideInTop)
