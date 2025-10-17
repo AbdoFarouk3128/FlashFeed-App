@@ -8,6 +8,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+    <include
+        android:id="@+id/layout_no_news"
+        layout="@layout/no_news"
+        android:visibility="invisible"
+        />
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_marginBottom="8dp"
         android:id="@+id/swipe_refresh"

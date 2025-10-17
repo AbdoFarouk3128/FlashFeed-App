@@ -69,9 +69,18 @@ class MainActivity : AppCompatActivity() {
                 articles.removeAll{
                     it.title=="[Removed]"
                 }
-                showNews(articles)
-                b.progress.visibility=View.INVISIBLE
-                b.swipeRefresh.isRefreshing=false
+                if(articles.isEmpty())
+                {
+                    b.layoutNoNews.root.visibility=View.VISIBLE
+                    b.progress.visibility=View.INVISIBLE
+                }
+                else{
+                    b.layoutNoNews.root.visibility=View.INVISIBLE
+                    showNews(articles)
+                    b.progress.visibility=View.INVISIBLE
+                    b.swipeRefresh.isRefreshing=false
+                }
+
             }
 
             override fun onFailure(call: Call<News>, t: Throwable) {

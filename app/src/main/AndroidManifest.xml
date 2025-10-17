@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FlashFeed">
         <activity
+            android:theme="@style/Theme.Material3.DayNight.NoActionBar"
             android:name=".SignUp"
             android:exported="false" />
         <activity
@@ -24,6 +25,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
+            android:theme="@style/Theme.Material3.DayNight.NoActionBar"
             android:name=".Login"
             android:exported="true">
             <intent-filter>

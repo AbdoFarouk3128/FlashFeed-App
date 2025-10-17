@@ -1,11 +1,14 @@
 package com.example.flashfeed
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.WindowManager
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.flashfeed.databinding.ActivityCategoriesBinding
@@ -21,6 +24,11 @@ class CategoriesActivity : AppCompatActivity() {
         enableEdgeToEdge()
         b = ActivityCategoriesBinding.inflate(layoutInflater)
         bs = ActivitySettingsBinding.inflate(layoutInflater)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                WindowManager.LayoutParams.FLAG_SCALED);
+        }
         setContentView(b.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { view, insets ->
             val statusBarHeight = insets.getInsets(WindowInsetsCompat.Type.statusBars()).top
@@ -28,11 +36,12 @@ class CategoriesActivity : AppCompatActivity() {
                 view.paddingLeft,
                 statusBarHeight,
                 view.paddingRight,
-                view.paddingBottom
+                view.paddingBottom,
             )
             insets
         }
         setTitle("Categories")
+
         b.general.setOnClickListener {
             val i = Intent(this, MainActivity::class.java)
             i.putExtra("category", "general")
