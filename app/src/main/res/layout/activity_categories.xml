@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -11,232 +10,261 @@
     tools:context=".CategoriesActivity">
 
 
-    <ImageView
-        android:layout_marginTop="24dp"
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/general"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:scaleType="centerCrop"
         android:src="@drawable/general"
+        android:tint="#80000000"
+        android:tintMode="src_atop"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    <View
-        android:alpha="0.5"
-        android:background="@color/black"
-        app:layout_constraintBottom_toBottomOf="@id/general"
-        app:layout_constraintTop_toTopOf="@id/general"
-        app:layout_constraintEnd_toEndOf="@id/general"
-        app:layout_constraintStart_toStartOf="@id/general"
-        android:layout_width="0dp"
-        android:layout_height="0dp"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearance="@style/RoundedImageView" />
+
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="serif"
-        android:textStyle="bold"
-        android:textSize="32sp"
-        android:textColor="@color/white"
         android:text="General"
         android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/general"
-        app:layout_constraintTop_toTopOf="@id/general"
         app:layout_constraintEnd_toEndOf="@id/general"
         app:layout_constraintStart_toStartOf="@id/general"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        app:layout_constraintTop_toTopOf="@id/general" />
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/Business"
         android:layout_width="0dp"
         android:layout_height="120dp"
         android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
         android:scaleType="centerCrop"
         android:src="@drawable/business"
-        app:layout_constraintStart_toStartOf="parent"
+        android:tintMode="src_atop"
         app:layout_constraintEnd_toStartOf="@id/entertainment"
-        android:layout_marginEnd="12dp"
-        app:layout_constraintTop_toBottomOf="@+id/general"/>
-    <View
-        android:alpha="0.5"
-        android:background="@color/black"
-        app:layout_constraintBottom_toBottomOf="@id/Business"
-        app:layout_constraintTop_toTopOf="@id/Business"
-        app:layout_constraintEnd_toEndOf="@id/Business"
-        app:layout_constraintStart_toStartOf="@id/Business"
-        android:layout_width="0dp"
-        android:layout_height="0dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/general"
+        app:shapeAppearance="@style/RoundedImageView"
+        app:tint="#80000000" />
+
+    <!--    <View-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        android:alpha="0.5"-->
+    <!--        android:background="@color/black"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@id/Business"-->
+    <!--        app:layout_constraintEnd_toEndOf="@id/Business"-->
+    <!--        app:layout_constraintStart_toStartOf="@id/Business"-->
+    <!--        app:layout_constraintTop_toTopOf="@id/Business" />-->
+
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="serif"
-        android:textStyle="bold"
-        android:textAllCaps="true"
-        android:textSize="24sp"
-        android:textColor="@color/white"
         android:text="Business"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/Business"
-        app:layout_constraintTop_toTopOf="@id/Business"
         app:layout_constraintEnd_toEndOf="@id/Business"
         app:layout_constraintStart_toStartOf="@id/Business"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <ImageView
+        app:layout_constraintTop_toTopOf="@id/Business" />
+
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/entertainment"
         android:layout_width="0dp"
         android:layout_height="120dp"
         android:layout_marginTop="12dp"
         android:scaleType="centerCrop"
         android:src="@drawable/entertainment"
+        android:tint="#80000000"
+        android:tintMode="src_atop"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/Business"
         app:layout_constraintTop_toBottomOf="@+id/general"
-        app:layout_constraintEnd_toEndOf="parent"/>
-    <View
-        android:alpha="0.5"
-        android:background="@color/black"
-        app:layout_constraintBottom_toBottomOf="@id/entertainment"
-        app:layout_constraintTop_toTopOf="@id/entertainment"
-        app:layout_constraintEnd_toEndOf="@id/entertainment"
-        app:layout_constraintStart_toStartOf="@id/entertainment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"/>
+        app:shapeAppearance="@style/RoundedImageView" />
+
+    <!--    <View-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        android:alpha="0.5"-->
+    <!--        android:background="@color/black"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@id/entertainment"-->
+    <!--        app:layout_constraintEnd_toEndOf="@id/entertainment"-->
+    <!--        app:layout_constraintStart_toStartOf="@id/entertainment"-->
+    <!--        app:layout_constraintTop_toTopOf="@id/entertainment" />-->
+
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="serif"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        android:textColor="@color/white"
         android:text="entertainment"
         android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/entertainment"
-        app:layout_constraintTop_toTopOf="@id/entertainment"
         app:layout_constraintEnd_toEndOf="@id/entertainment"
         app:layout_constraintStart_toStartOf="@id/entertainment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <ImageView
+        app:layout_constraintTop_toTopOf="@id/entertainment" />
+
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/health"
         android:layout_width="0dp"
         android:layout_height="120dp"
         android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
         android:scaleType="centerCrop"
         android:src="@drawable/health"
-        app:layout_constraintStart_toStartOf="parent"
+        android:tint="#80000000"
+        android:tintMode="src_atop"
         app:layout_constraintEnd_toStartOf="@id/entertainment"
-        android:layout_marginEnd="12dp"
-        app:layout_constraintTop_toBottomOf="@+id/Business"/>
-    <View
-        android:alpha="0.5"
-        android:background="@color/black"
-        app:layout_constraintBottom_toBottomOf="@id/health"
-        app:layout_constraintTop_toTopOf="@id/health"
-        app:layout_constraintEnd_toEndOf="@id/health"
-        app:layout_constraintStart_toStartOf="@id/health"
-        android:layout_width="0dp"
-        android:layout_height="0dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Business"
+        app:shapeAppearance="@style/RoundedImageView" />
+
+    <!--    <View-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        android:alpha="0.5"-->
+    <!--        android:background="@color/black"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@id/health"-->
+    <!--        app:layout_constraintEnd_toEndOf="@id/health"-->
+    <!--        app:layout_constraintStart_toStartOf="@id/health"-->
+    <!--        app:layout_constraintTop_toTopOf="@id/health" />-->
+
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="serif"
-        android:textAllCaps="true"
-        android:textStyle="bold"
-        android:textSize="24sp"
-        android:textColor="@color/white"
         android:text="Health"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/health"
-        app:layout_constraintTop_toTopOf="@id/health"
         app:layout_constraintEnd_toEndOf="@id/health"
         app:layout_constraintStart_toStartOf="@id/health"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <ImageView
+        app:layout_constraintTop_toTopOf="@id/health" />
+
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/science"
         android:layout_width="0dp"
         android:layout_height="120dp"
         android:layout_marginTop="12dp"
         android:scaleType="centerCrop"
         android:src="@drawable/science"
+        android:tint="#80000000"
+        android:tintMode="src_atop"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/entertainment"
         app:layout_constraintTop_toBottomOf="@+id/entertainment"
-        app:layout_constraintEnd_toEndOf="parent"/>
-    <View
-        android:alpha="0.5"
-        android:background="@color/black"
-        app:layout_constraintBottom_toBottomOf="@id/science"
-        app:layout_constraintTop_toTopOf="@id/science"
-        app:layout_constraintEnd_toEndOf="@id/science"
-        app:layout_constraintStart_toStartOf="@id/science"
-        android:layout_width="0dp"
-        android:layout_height="0dp"/>
-    <TextView
-        android:fontFamily="serif"
-        android:textAllCaps="true"
-        android:textStyle="bold"
-        android:textSize="24sp"
-        android:textColor="@color/white"
-        android:text="science"
-        app:layout_constraintBottom_toBottomOf="@id/science"
-        app:layout_constraintTop_toTopOf="@id/science"
-        app:layout_constraintEnd_toEndOf="@id/science"
-        app:layout_constraintStart_toStartOf="@id/science"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        app:shapeAppearance="@style/RoundedImageView" />
 
-    <ImageView
+    <!--    <View-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        android:alpha="0.5"-->
+    <!--        android:background="@color/black"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@id/science"-->
+    <!--        app:layout_constraintEnd_toEndOf="@id/science"-->
+    <!--        app:layout_constraintStart_toStartOf="@id/science"-->
+    <!--        app:layout_constraintTop_toTopOf="@id/science" />-->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:text="science"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/science"
+        app:layout_constraintEnd_toEndOf="@id/science"
+        app:layout_constraintStart_toStartOf="@id/science"
+        app:layout_constraintTop_toTopOf="@id/science" />
+
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/sport"
         android:layout_width="0dp"
         android:layout_height="120dp"
         android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
         android:scaleType="centerCrop"
         android:src="@drawable/sport"
-        app:layout_constraintStart_toStartOf="parent"
+        android:tint="#80000000"
+        android:tintMode="src_atop"
         app:layout_constraintEnd_toStartOf="@id/entertainment"
-        android:layout_marginEnd="12dp"
-        app:layout_constraintTop_toBottomOf="@+id/health"/>
-    <View
-        android:alpha="0.5"
-        android:background="@color/black"
-        app:layout_constraintBottom_toBottomOf="@id/sport"
-        app:layout_constraintTop_toTopOf="@id/sport"
-        app:layout_constraintEnd_toEndOf="@id/sport"
-        app:layout_constraintStart_toStartOf="@id/sport"
-        android:layout_width="0dp"
-        android:layout_height="0dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/health"
+        app:shapeAppearance="@style/RoundedImageView" />
+
+    <!--    <View-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        android:alpha="0.5"-->
+    <!--        android:background="@color/black"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@id/sport"-->
+    <!--        app:layout_constraintEnd_toEndOf="@id/sport"-->
+    <!--        app:layout_constraintStart_toStartOf="@id/sport"-->
+    <!--        app:layout_constraintTop_toTopOf="@id/sport" />-->
+
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="serif"
-        android:textAllCaps="true"
-        android:textStyle="bold"
-        android:textSize="28sp"
-        android:textColor="@color/white"
         android:text="sport"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="28sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/sport"
-        app:layout_constraintTop_toTopOf="@id/sport"
         app:layout_constraintEnd_toEndOf="@id/sport"
         app:layout_constraintStart_toStartOf="@id/sport"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <ImageView
+        app:layout_constraintTop_toTopOf="@id/sport" />
+
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/tech"
         android:layout_width="0dp"
         android:layout_height="120dp"
         android:layout_marginTop="12dp"
         android:scaleType="centerCrop"
         android:src="@drawable/tech"
+        android:tint="#80000000"
+        android:tintMode="src_atop"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/entertainment"
         app:layout_constraintTop_toBottomOf="@+id/science"
-        app:layout_constraintEnd_toEndOf="parent"/>
-    <View
-        android:alpha="0.5"
-        android:background="@color/black"
-        app:layout_constraintBottom_toBottomOf="@id/tech"
-        app:layout_constraintTop_toTopOf="@id/tech"
-        app:layout_constraintEnd_toEndOf="@id/tech"
-        app:layout_constraintStart_toStartOf="@id/tech"
-        android:layout_width="0dp"
-        android:layout_height="0dp"/>
+        app:shapeAppearance="@style/RoundedImageView" />
+
+    <!--    <View-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        android:alpha="0.5"-->
+    <!--        android:background="@color/black"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@id/tech"-->
+    <!--        app:layout_constraintEnd_toEndOf="@id/tech"-->
+    <!--        app:layout_constraintStart_toStartOf="@id/tech"-->
+    <!--        app:layout_constraintTop_toTopOf="@id/tech" />-->
+
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="serif"
-        android:textAllCaps="true"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:textColor="@color/white"
         android:text="technology"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/tech"
-        app:layout_constraintTop_toTopOf="@id/tech"
         app:layout_constraintEnd_toEndOf="@id/tech"
         app:layout_constraintStart_toStartOf="@id/tech"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        app:layout_constraintTop_toTopOf="@id/tech" />
 </androidx.constraintlayout.widget.ConstraintLayout>
