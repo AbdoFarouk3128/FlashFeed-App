@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.flashfeed.databinding.ActivitySettingsBinding
+
 //lateinit var prefs:SharedPreferences
 class SettingsActivity : AppCompatActivity() {
 
@@ -54,8 +55,8 @@ class SettingsActivity : AppCompatActivity() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerCountry.adapter = adapter
 //I (abdelrahman latif) removed  val bec. i declared it to all classes
-        val  prefs = getSharedPreferences(prefs_name, Context.MODE_PRIVATE)
-        val country =prefs.getString(country_key,"NO data")
+        val prefs = getSharedPreferences(prefs_name, Context.MODE_PRIVATE)
+        val country = prefs.getString(country_key, "NO data")
         binding.btnSave.setOnClickListener {
             val selectedCountry = binding.spinnerCountry.selectedItem.toString()
             prefs.edit().putString(country_key, selectedCountry).apply()
@@ -64,6 +65,7 @@ class SettingsActivity : AppCompatActivity() {
             finish()
         }
     }
+
     override fun onSupportNavigateUp(): Boolean {
         finish()
         return true
